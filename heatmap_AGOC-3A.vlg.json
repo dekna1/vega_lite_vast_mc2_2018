@@ -15,7 +15,7 @@
         }
         },
         {
-            "filter": "datum.measure == 'Chlorodinine'"
+            "filter": "datum.measure == 'AGOC-3A'"
         },
         {
         "filter": {
