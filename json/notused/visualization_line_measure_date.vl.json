@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Stock prices of four large companies as a small multiples of area charts.",
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "sampleDate",
+        "range": [
+          2006,
+          2016
+        ]
+      }
+    },
+    {
+      "filter": "datum.measure == 'Ammonium'"
+    }
+  ],
+  "width": 900,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/vastmc22018_tran_ds.csv"
+  },
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "sampleDate",
+      "aggregate": "mean",
+      "type": "ordinal",
+      "timeUnit": "yearmonth",
+      "sort": "ascending"
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "Value",
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "measure",
+      "type": "nominal",
+      "legend": null
+    },
+    "row": {
+      "field": "measure",
+      "type": "nominal",
+      "header": {
+        "title": "Measure"
+      }
+    }
+  },
+  "config": {}
+}

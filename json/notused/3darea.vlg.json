@@ -1,0 +1,38 @@
+{
+    "data": {"url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"},
+    "mark": "area",
+    "transform":[
+      {
+        "filter":"datum.measure == 'Water temperature'"
+      },
+      {
+        "filter": {
+          "timeUnit": "year",
+          "field": "sampleDate",
+          "range": [2014, 2016]
+        }
+      }
+    ],
+    "encoding": {
+      "x": {
+        "timeUnit": "yearmonth", "field": "sampleDate", "type": "ordinal",
+        "scale": {"nice": "month"},
+        "axis": {"axisWidth": 0, "format": "%Y", "labelAngle": 0}
+      },
+      "y": {
+        "aggregate": "mean", "field": "value","type": "quantitative"
+      },
+      "color":{
+        "field": "value",
+        "type": "quantitative",
+        "scale":{
+          "range":["#001eff","#ff0000"]
+        },
+        "tooltip":[
+          {"field":"location","type":"nominal"},
+          {"field":"value","type":"quantitative"}
+        ]
+      }
+    },
+    "config": {"cell": {"width": 300, "height": 200}}
+  }

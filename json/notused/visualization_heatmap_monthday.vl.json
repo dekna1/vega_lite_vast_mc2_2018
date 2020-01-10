@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/vastmc22018_tran_ds.csv"
+  },
+  "title": "HeatMap",
+  "config": {
+    "view": {
+      "strokeWidth": 0,
+      "step": 13
+    },
+    "axis": {
+      "domain": false
+    }
+  },
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "sample date",
+      "timeUnit": "year",
+      "type": "ordinal",
+      "title": "Day"
+    },
+    "y": {
+      "field": "sample date",
+      "timeUnit": "month",
+      "type": "ordinal",
+      "title": "Month"
+    },
+    "color": {
+      "field": "Ammonium",
+      "aggregate": "max",
+      "type": "quantitative",
+      "legend": {
+        "title": null
+      }
+    }
+  }
+}

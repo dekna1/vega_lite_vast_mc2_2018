@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Reading comparison between measures across locations",
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "transform": [
+    {
+      "filter": "(datum.measure == 'AGOC-3A' ||datum.measure == 'AOX' ||datum.measure == 'Ammonium' ||datum.measure == 'Anonic active surfactants' ||datum.measure == 'Arsenic' ||datum.measure == 'Altrazine' ||datum.measure == 'Bicarbonates' ||datum.measure == 'Biochemical Oxygen' ||datum.measure == 'Cadium' ||datum.measure == 'Calcium' ||datum.measure == 'Chemical Oxygen Demand (Cr)' ||datum.measure == 'Chemical Oxygen Demand (Mn)' ||datum.measure == 'Chlorides' ||datum.measure == 'Chlorodinine' ||datum.measure == 'Chromium' ||datum.measure == 'Dissolved oxygen' ||datum.measure == 'Dissolved silicates' ||datum.measure == 'Iron' ||datum.measure == 'Lead' ||datum.measure == 'Magnesium' ||datum.measure == 'Manganese' ||datum.measure == 'Mercury' ||datum.measure == 'Methylosmoline' ||datum.measure == 'Nickel' ||datum.measure == 'Nitrates' ||datum.measure == 'Nitrites' ||datum.measure == 'Orthophosphate-phosphorus' ||datum.measure == 'Oxygen saturation' ||datum.measure == 'Petroleum hydrocarbons' ||datum.measure == 'Potassium' ||datum.measure == 'Sodium' ||datum.measure == 'Sulphates' ||datum.measure == 'total dissolved salts' ||datum.measure == 'Total hardness' ||datum.measure == 'total nitrogen' ||datum.measure == 'Total organic carbon' ||datum.measure == 'Total phosphorus' ||datum.measure == 'Water temperature' ||datum.measure == 'Zinc' ||datum.measure == 'gamma-Hexachlorocyclohexane' ||datum.measure == 'p.p-DDT') && datum.sampleDate >= 2010"
+    }
+  ],
+  "title": "Reading comparison between measures across locations",
+  "vconcat": [
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "field": "location",
+            "scale": {"scheme": "tableau20"},
+            "selection": "click",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "title": "Total Readings",
+          "aggregate": "count",
+          "field": "measure",
+          "type": "nominal"
+        },
+        "y": {
+          "title": "Location",
+          "field": "location",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "tooltip":[
+          {
+           "field": "location",
+          "type": "nominal"
+          },
+          {
+          "aggregate": "count",
+          "field": "measure",
+          "type": "nominal"
+          }
+        ]
+      },
+      "width": 750,
+      "mark": "bar",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": ["measure"],
+          "init": {"measure": "Methylosmoline"},
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "AGOC-3A",
+                "Chlorodinine",
+                "Methylosmoline",
+                "AOX",
+                "Ammonium",
+                "Anonic active surfactants",
+                "Arsenic",
+                "Altrazine",
+                "Bicarbonates",
+                "Biochemical Oxygen",
+                "Cadium",
+                "Calcium",
+                "Chemical Oxygen Demand (Cr)",
+                "Chemical Oxygen Demand (Mn)",
+                "Chlorides",
+                "Chromium",
+                "Dissolved oxygen",
+                "Dissolved silicates",
+                "Iron",
+                "Lead",
+                "Magnesium",
+                "Manganese",
+                "Mercury",
+                "Nickel",
+                "Nitrates",
+                "Nitrites",
+                "Orthophosphate-phosphorus",
+                "Oxygen saturation",
+                "Petroleum hydrocarbons",
+                "Potassium",
+                "Sodium",
+                "Sulphates",
+                "total dissolved salts",
+                "Total hardness",
+                "total nitrogen",
+                "Total organic carbon",
+                "Total phosphorus",
+                "Water temperature",
+                "Zinc",
+                "gamma-Hexachlorocyclohexane",
+                "p.p-DDT"
+              ]
+            }
+          }
+        },
+        "click": {"encodings": ["color"], "type": "multi"}
+      }
+    },
+    {
+      "width": 750,
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [2010, 2016]
+          }
+        },
+        {"filter": {"selection": "click"}},
+        {"filter": {"selection": "Measure"}}
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": ["measure"],
+          "init": {"measure": "Chlorodinine"},
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": ["Chlorodinine", "Methylosmoline", "AGOC-3A"]
+            }
+          }
+        },
+        "click": {"encodings": ["color"], "type": "multi"}
+      },
+      "encoding": {
+        "x": {
+          "title": "Measure Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {"title": "Reading", "field": "value", "type": "quantitative"},
+        "color": {"field": "location", "type": "nominal"},
+        "tooltip": [
+          {"field": "id", "type": "nominal"},
+          {"field": "sampleDate", "type": "temporal"},
+          {"field": "value", "type": "quantitative"},
+          {"field": "measure", "type": "nominal"},
+          {"field": "location", "type": "nominal"}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Key Measure Readings Per Location.",
+  "width":600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "title":"Key Measure Readings Per Location",
+  "columns": 3,
+  "hconcat": [
+    {
+      "title":"Kohsoom",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [
+              2010,
+              2016
+            ]
+          }
+        },
+        {
+          "filter": "datum.location == 'Kohsoom' "
+        },
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Chlorodinine"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Chlorodinine",
+                "Methylosmoline",
+                "AGOC-3A"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "encoding": {
+        "x": {
+          "title":"Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title":"Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "id",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          },
+          {
+            "field": "measure",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "title":"Boonsri",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [
+              2010,
+              2016
+            ]
+          }
+        },
+        {
+          "filter": "datum.location == 'Boonsri'"
+        },
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Chlorodinine"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Chlorodinine",
+                "Methylosmoline",
+                "AGOC-3A"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "encoding": {
+        "x": {
+          "title":"Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title":"Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "id",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          },
+          {
+            "field": "measure",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "title":"Chai",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [
+              2010,
+              2016
+            ]
+          }
+        },
+        {
+          "filter": "datum.location == 'Chai'"
+        },
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Chlorodinine"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Chlorodinine",
+                "Methylosmoline",
+                "AGOC-3A"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "encoding": {
+        "x": {
+          "title":"Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title":"Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "id",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          },
+          {
+            "field": "measure",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "title":"Busarakhan",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [
+              2010,
+              2016
+            ]
+          }
+        },
+        {
+          "filter": "datum.location == 'Busarakhan'"
+        },
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Chlorodinine"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Chlorodinine",
+                "Methylosmoline",
+                "AGOC-3A"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "encoding": {
+        "x": {
+          "title":"Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title":"Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "id",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          },
+          {
+            "field": "measure",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "title":"Somchair",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [
+              2010,
+              2016
+            ]
+          }
+        },
+        {
+          "filter": "datum.location == 'Somchair'"
+        },
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Chlorodinine"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Chlorodinine",
+                "Methylosmoline",
+                "AGOC-3A"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "encoding": {
+        "x": {
+          "title":"Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title":"Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "id",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          },
+          {
+            "field": "measure",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "title":"Kannika",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [
+              2010,
+              2016
+            ]
+          }
+        },
+        {
+          "filter": "datum.location == 'Kannika'"
+        },
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Chlorodinine"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Chlorodinine",
+                "Methylosmoline",
+                "AGOC-3A"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "encoding": {
+        "x": {
+          "title":"Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title":"Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "id",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          },
+          {
+            "field": "measure",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "title":"Sakda",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [
+              2010,
+              2016
+            ]
+          }
+        },
+        {
+          "filter": "datum.location == 'Sakda'"
+        },
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Chlorodinine"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Chlorodinine",
+                "Methylosmoline",
+                "AGOC-3A"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "encoding": {
+        "x": {
+          "title":"Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title":"Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "id",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          },
+          {
+            "field": "measure",
+            "type": "nominal"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}

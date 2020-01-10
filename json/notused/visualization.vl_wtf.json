@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "TEST",
+  "width": 900,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "sample date",
+        "range": [
+          2005,
+          2016
+        ]
+      }
+    },
+    {
+      "filter": "datum.measure == 'AGOC-3A'"
+    }
+  ],
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "measure",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "Methylosmoline",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "sample date",
+        "type": "temporal"
+      }
+    ]
+  },
+  "config": {}
+}

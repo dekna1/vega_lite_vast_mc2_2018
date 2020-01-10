@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Reading Frequency Per Measure [Selected Measures]",
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "title":"Reading Frequency Per Measure [Selected Measures]",
+  "width": 600,
+  "mark": "tick",
+  "transform": [
+      {
+        "filter":"datum.measure == 'AGOC-3A' ||datum.measure == 'Ammonium' ||datum.measure == 'Anonic active surfactants' ||datum.measure == 'Arsenic' ||datum.measure == 'Altrazine' ||datum.measure == 'Bicarbonates' ||datum.measure == 'Biochemical Oxygen' ||datum.measure == 'Cadium' ||datum.measure == 'Calcium' ||datum.measure == 'Chemical Oxygen Demand (Cr)' ||datum.measure == 'Chemical Oxygen Demand (Mn)' ||datum.measure == 'Chlorides' ||datum.measure == 'Chlorodinine' ||datum.measure == 'Chromium' ||datum.measure == 'Dissolved oxygen' ||datum.measure == 'Dissolved silicates' ||datum.measure == 'Iron' ||datum.measure == 'Lead' ||datum.measure == 'Magnesium' ||datum.measure == 'Manganese' ||datum.measure == 'Mercury' ||datum.measure == 'Methylosmoline' ||datum.measure == 'Nickel' ||datum.measure == 'Nitrates' ||datum.measure == 'Nitrites' ||datum.measure == 'Orthophosphate-phosphorus' ||datum.measure == 'Oxygen saturation' ||datum.measure == 'Petroleum hydrocarbons' ||datum.measure == 'Potassium' ||datum.measure == 'Sodium' ||datum.measure == 'Sulphates' ||datum.measure == 'total dissolved salts' ||datum.measure == 'Total hardness' ||datum.measure == 'total nitrogen' ||datum.measure == 'Total organic carbon' ||datum.measure == 'Total phosphorus' ||datum.measure == 'Water temperature' ||datum.measure == 'Zinc' ||datum.measure == 'gamma-Hexachlorocyclohexane' ||datum.measure == 'p.p-DDT'"
+      },
+      {
+        "calculate": "year(datum.sampleDate)",
+        "as": "year"
+      },
+      {
+        "filter":"datum.year >= 2007"
+      }
+  ],
+  "encoding": {
+    "x": {
+      "title":"Reading Date",
+      "field": "sampleDate",
+      "type": "temporal",
+      "sort": "ascending"
+    },
+    "y": {
+      "field": "measure",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Measure Name"
+    },
+    "tooltip": [
+      {
+        "field": "measure",
+        "type": "nominal"
+      },
+      {
+        "field": "location",
+        "type": "nominal"
+      },
+      {
+        "field": "sampleDate",
+        "type": "temporal"
+      }
+    ],
+    "color": {
+      "field": "location",
+      "type": "nominal"
+    }
+  }
+}

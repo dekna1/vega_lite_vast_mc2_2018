@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Kohsoom Measure Readings.",
+  "width": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "title": "Kohsoom Measure Readings",
+  "columns": 3,
+  "hconcat": [
+    {
+      "title": "Kohsoom",
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [2015, 2016]
+          }
+        },
+        {"filter": "datum.location == 'Kohsoom' "},
+        {"filter": {"selection": "click"}},
+        {"filter": {"selection": "Measure"}}
+      ],
+      "mark": "point",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": ["measure"],
+          "init": {"measure": "Chlorodinine"},
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "AGOC-3A",
+                "Chlorodinine",
+                "Methylosmoline",
+                "AOX",
+                "Ammonium",
+                "Anonic active surfactants",
+                "Arsenic",
+                "Altrazine",
+                "Bicarbonates",
+                "Biochemical Oxygen",
+                "Cadium",
+                "Calcium",
+                "Chemical Oxygen Demand (Cr)",
+                "Chemical Oxygen Demand (Mn)",
+                "Chlorides",
+                "Chromium",
+                "Dissolved oxygen",
+                "Dissolved silicates",
+                "Iron",
+                "Lead",
+                "Magnesium",
+                "Manganese",
+                "Mercury",
+                "Nickel",
+                "Nitrates",
+                "Nitrites",
+                "Orthophosphate-phosphorus",
+                "Oxygen saturation",
+                "Petroleum hydrocarbons",
+                "Potassium",
+                "Sodium",
+                "Sulphates",
+                "total dissolved salts",
+                "Total hardness",
+                "total nitrogen",
+                "Total organic carbon",
+                "Total phosphorus",
+                "Water temperature",
+                "Zinc",
+                "gamma-Hexachlorocyclohexane",
+                "p.p-DDT"
+              ]
+            }
+          }
+        },
+        "click": {"encodings": ["color"], "type": "multi"}
+      },
+      "encoding": {
+        "x": {
+          "title": "Reading Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "title": "Reading Value",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "size": {"field": "value", "type": "quantitative"},
+        "tooltip": [
+          {"field": "id", "type": "nominal"},
+          {"field": "sampleDate", "type": "temporal"},
+          {"field": "value", "type": "quantitative"},
+          {"field": "measure", "type": "nominal"}
+        ]
+      }
+    }
+  ]
+}

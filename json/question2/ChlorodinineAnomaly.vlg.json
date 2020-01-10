@@ -1,0 +1,53 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "description": "Chlorodinine Anomaly while Methylosmolinev Contamination.",
+    "width": 600,
+    "data": {
+      "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+    },
+    "title": "Chlorodinine Anomaly while Methylosmoline Contamination",
+    "transform": [
+      {
+        "filter": {
+          "timeUnit": "year",
+          "field": "sampleDate",
+          "range": [2007, 2016]
+        }
+      },
+      {"filter": {"selection": "click"}},
+      {"filter": {"selection": "Measure"}}
+    ],
+    "mark": "line",
+    "selection": {
+      "Measure": {
+        "type": "single",
+        "fields": ["measure"],
+        "init": {"measure": "Chlorodinine"},
+        "bind": {
+          "measure": {
+            "input": "select",
+            "options": ["Chlorodinine", "Methylosmoline","gamma-Hexachlorocyclohexane"]
+          }
+        }
+      },
+      "click": {"encodings": ["color"], "type": "multi"}
+    },
+    "encoding": {
+      "x": {
+        "title": "Reading Date",
+        "field": "sampleDate",
+        "timeUnit": "yearmonth",
+        "type": "temporal"
+      },
+      "y": {"title": "Reading Value", "field": "value", "type": "quantitative"},
+      "color": {"field": "location", "type": "nominal"},
+      "tooltip": [
+        {"field": "id", "type": "nominal"},
+        {"field": "sampleDate", "type": "temporal"},
+        {"field": "value", "type": "quantitative"},
+        {"field": "location", "type": "nominal"}
+      ]
+    },
+    
+    "config": {}
+  }

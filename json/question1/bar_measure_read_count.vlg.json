@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Total Sample Count Per Measure",
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "title":"Total Sample Count Per Measure",
+  "width": 600,
+  "height": 900,
+  "layer": [
+    {
+      "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "field": "measure",
+          "as": "measure_count"
+        }
+      ],
+      "groupby": [
+        "measure",            
+        "location"
+      ]
+    }
+  ],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "measure_count",
+        "type": "quantitative",
+        "title": "Reading Count"
+      },
+      "y": {
+        "field": "measure",
+        "type": "nominal",
+        "sort": "-x",
+        "title": "Measure Name"
+      },
+      "tooltip": [
+        {
+          "field": "measure",
+          "type": "nominal"
+        },
+        {
+          "field": "measure_count",
+          "type": "quantitative"
+        },
+        {
+          "field": "location",
+          "type": "ordinal"
+        }
+      ],
+      "color": {
+        "field": "location",
+        "type": "nominal"
+      }
+    }
+  },
+  {
+    "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "field": "measure",
+          "as": "measure_count"
+        }
+      ],
+      "groupby": [
+        "measure"    
+      ]
+    }
+  ],
+      "mark": "rule",
+      "encoding": {
+        "x": {
+          "aggregate": "mean",
+          "field": "measure_count",
+          "type": "quantitative"
+        },
+        "tooltip": [
+        {
+          "title":"Average Total Measure Count",
+          "aggregate": "mean",
+          "field": "measure_count",
+          "type": "nominal"
+        }
+      ],
+        "color": {"value": "purple"},
+        "size": {"value": 4}
+      }
+    }
+]
+}

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Average Reading Values comparison between measures across locations",
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "transform": [
+            {"filter": {"selection": "Measure"}}
+  ],
+  "title": "Average Reading Values comparison between measures across locations",
+  "vconcat": [
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "field": "location",
+            "scale": {"scheme": "tableau20"},
+            "selection": "click",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "title": "Average Reading Value",
+          "aggregate": "mean",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "y": {
+          "title": "Location",
+          "field": "location",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "tooltip":[
+          {
+           "field": "location",
+          "type": "nominal"
+          },
+          {
+          "aggregate": "mean",
+          "field": "value",
+          "type": "quantitative",
+          "title":"Mean Measure Value"
+          }
+        ]
+      },
+      "width": 750,
+      "mark": "bar",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": ["measure"],
+          "init": {"measure": "Ammonium"},
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "AGOC-3A",
+                "Chlorodinine",
+                "Methylosmoline",
+                "Ammonium",
+                "Sodium"
+              ]
+            }
+          }
+        },
+        "click": {"encodings": ["color"], "type": "multi"}
+      }
+    },
+    {
+      "width": 750,
+      "transform": [
+        {
+          "filter": {
+            "timeUnit": "year",
+            "field": "sampleDate",
+            "range": [2007, 2016]
+          }
+        },
+        {"filter": {"selection": "click"}},
+        {"filter": {"selection": "Measure"}}
+      ],
+      "mark": "trail",
+      "encoding": {
+        "x": {
+          "title": "Measure Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {"title": "Reading", "field": "value", "type": "quantitative"},
+        "color": {"field": "location", "type": "nominal"},
+        "size": {"field": "value", "type": "quantitative"},
+        "tooltip": [
+          {"field": "id", "type": "nominal"},
+          {"field": "sampleDate", "type": "temporal"},
+          {"field": "value", "type": "quantitative"},
+          {"field": "measure", "type": "nominal"},
+          {"field": "location", "type": "nominal"}
+        ]
+      }
+    }
+  ]
+}

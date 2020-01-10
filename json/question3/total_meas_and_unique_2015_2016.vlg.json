@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Total Number of Readings and Total Number of Unique Measures per location",
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "title": "Total Readings & Total Unique Measures per Location [2015-2016]",
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "sampleDate",
+        "range": [
+          2015,
+          2016
+        ]
+      }
+    }
+  ],
+  "vconcat": [
+    {
+      "width": 600,
+      "height": 200,
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "aggregate": "count",
+          "field": "measure",
+          "type": "quantitative",
+          "title": "Count of Measures"
+        },
+        "x": {
+          "field": "location",
+          "type": "nominal",
+          "sort": "-y"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "aggregate": "count",
+            "field": "measure",
+            "type": "quantitative",
+            "title": "Total Count Of Measures"
+          },
+          {
+            "field": "location",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "width": 600,
+      "height": 200,
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "aggregate": "distinct",
+          "field": "measure",
+          "type": "quantitative",
+          "title": "Count of Unique Measures"
+        },
+        "x": {
+          "field": "location",
+          "type": "nominal",
+          "sort": "-y"
+        },
+        "color": {
+          "field": "location",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "aggregate": "distinct",
+            "field": "measure",
+            "type": "quantitative",
+            "title": "Total Unique Measures"
+          },
+          {
+            "field": "location",
+            "type": "nominal"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}

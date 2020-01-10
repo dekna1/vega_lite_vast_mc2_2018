@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "sampleDate",
+        "range": [
+          2011,
+          2016
+        ]
+      }
+    },
+    {
+      "filter":"datum.measure == 'AGOC-3A' ||datum.measure == 'Ammonium' ||datum.measure == 'Anonic active surfactants' ||datum.measure == 'Arsenic' ||datum.measure == 'Altrazine' ||datum.measure == 'Bicarbonates' ||datum.measure == 'Biochemical Oxygen' ||datum.measure == 'Cadium' ||datum.measure == 'Calcium' ||datum.measure == 'Chemical Oxygen Demand (Cr)' ||datum.measure == 'Chemical Oxygen Demand (Mn)' ||datum.measure == 'Chlorides' ||datum.measure == 'Chlorodinine' ||datum.measure == 'Chromium' ||datum.measure == 'Dissolved oxygen' ||datum.measure == 'Dissolved silicates' ||datum.measure == 'Iron' ||datum.measure == 'Lead' ||datum.measure == 'Magnesium' ||datum.measure == 'Manganese' ||datum.measure == 'Mercury' ||datum.measure == 'Methylosmoline' ||datum.measure == 'Nickel' ||datum.measure == 'Nitrates' ||datum.measure == 'Nitrites' ||datum.measure == 'Orthophosphate-phosphorus' ||datum.measure == 'Oxygen saturation' ||datum.measure == 'Petroleum hydrocarbons' ||datum.measure == 'Potassium' ||datum.measure == 'Sodium' ||datum.measure == 'Sulphates' ||datum.measure == 'total dissolved salts' ||datum.measure == 'Total hardness' ||datum.measure == 'total nitrogen' ||datum.measure == 'Total organic carbon' ||datum.measure == 'Total phosphorus' ||datum.measure == 'Water temperature' ||datum.measure == 'Zinc' ||datum.measure == 'gamma-Hexachlorocyclohexane' ||datum.measure == 'p.p-DDT'"
+    }
+  ],
+  "mark": "rect",
+  "width": 1200,
+  "encoding": {
+    "y": {
+      "field": "measure",
+      "type": "nominal"
+    },
+    "x": {
+      "field": "sampleDate",
+      "type": "ordinal",
+      "timeUnit": "yearmonth",
+      "sort": "ascending"
+    },
+    
+    "color": {
+      "aggregate": "mean",
+      "field": "value",
+      "type": "quantitative"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.measure == 'gamma-Hexachlorocyclohexane'"
+    }
+  ],
+  "mark": "rect",
+  "width": 600,
+  "encoding": {
+    "y": {
+      "field": "measure",
+      "type": "nominal",
+      "title":"Measure"
+    },
+    "x": {
+      "field": "sampleDate",
+      "type": "ordinal",
+      "timeUnit": "yearmonth",
+      "sort": "ascending",
+      "title":"Measure Date"
+    },
+    "row": {
+      "field": "unit",
+      "type": "nominal"
+    },
+    "color":{
+      "aggregate": "mean",
+      "field": "value",
+      "type": "quantitative",
+      "scale":{
+        "range":["#001eff","#ff0000"]
+      }
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 900,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/vastmc22018_tran_ds.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "sample date",
+        "range": [
+          2007,
+          2016
+        ]
+      }
+    },
+    {
+      "filter": {
+        "field": "Methylosmoline",
+        "range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "filter": {
+        "field": "Chlorodinine",
+        "range": [
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Methylosmoline",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "timeUnit": "yearmonthdate",
+        "field": "sample date",
+        "type": "temporal"
+      },
+      {
+        "field": "Methylosmoline",
+        "type": "quantitative"
+      },
+      {
+        "field": "Chlorodinine",
+        "type": "quantitative"
+      },
+      {
+        "field": "location",
+        "type": "ordinal"
+      }
+    ],
+    "color": {
+      "field": "location",
+      "type": "nominal"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "color": "orange"
+      },
+      "encoding": {
+        "y": {
+          "field": "Chlorodinine",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": "rule",
+      "selection": {
+        "hover": {
+          "type": "single",
+          "on": "mouseover",
+          "empty": "none"
+        }
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "selection": {
+              "not": "hover"
+            },
+            "value": "transparent"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "axisY": {
+      "minExtent": 30
+    }
+  }
+}

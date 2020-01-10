@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Reading Frequency Per Measure [All Measures]",
+  "data": {
+    "url": "https://raw.githubusercontent.com/dekna1/vega_lite_vast_mc2_2018/master/VAST_preprocessed.csv"
+  },
+  "title":"Reading Frequency Per Measure [All Measures]",
+  "width": 600,
+  "transform": [
+    {
+      "calculate": "year(datum.sampleDate)",
+      "as": "year"
+    },
+    {
+      "filter":"datum.year >= 2007"
+    }
+  ],
+  "mark": "tick",
+  "encoding": {
+    "x": {
+      "title":"Reading Date",
+      "field": "sampleDate",
+      "type": "temporal",
+      "sort": "ascending"
+    },
+    "y": {
+      "field": "measure",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Measure Name"
+    },
+    "tooltip": [
+      {
+        "field": "measure",
+        "type": "nominal"
+      },
+      {
+        "field": "location",
+        "type": "nominal"
+      },
+      {
+        "field": "sampleDate",
+        "type": "temporal"
+      }
+    ],
+    "color": {
+      "field": "location",
+      "type": "nominal"
+    }
+  }
+}
